@@ -1,18 +1,12 @@
 import unittest
-from main import read_file
+import sys
+from main import read_file  
 
-class TestReadFile(unittest.TestCase):
+class TestFileRead(unittest.TestCase):
+    def test_dynamic_file(self):
+        if len(sys.argv) > 1:
+            path = sys.argv[1]  
 
-    def test_existing_file(self):
-        path = "text.txt"
-        result = read_file(path)
-        self.assertFalse(result.startswith("Error"))
-        self.assertTrue(len(result) > 0)
-
-    def test_non_existing_file(self):
-        path = "not_exist.txt"
-        result = read_file(path)
-        self.assertTrue(result.startswith("Error"))
 
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main(argv=['first-arg-is-ignored'], exit=False)

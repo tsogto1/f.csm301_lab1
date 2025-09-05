@@ -1,3 +1,5 @@
+import sys
+
 def read_file(filepath):
     try:
         with open(filepath, "r", encoding="utf-8") as f:
@@ -6,6 +8,9 @@ def read_file(filepath):
         return "Error: " + str(e)
 
 if __name__ == "__main__":
-    path = "text.txt"
+    if len(sys.argv) > 1:
+        path = sys.argv[1]
+    else:
+        path = "text.txt"
     content = read_file(path)
     print(content)
